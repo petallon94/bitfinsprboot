@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="boot.dao.MysqlReviewMapper">
+	<select id="getTotalCount" resultType="int">
+		select count(*) from review
+	</select>
+	<select id = "getAllDatas" parmeterType="String" resultType = "review">
+	select * from review r, restaurant res, hashtag h, repic p, likere l where r.rnum=res.revnum and r.rnum=h.crnum and r.rnum=p.pirnum and r.rnum=l.lrnum and where r.rmnum = #{rmnum}
+	</select>
+	
+</mapper>
