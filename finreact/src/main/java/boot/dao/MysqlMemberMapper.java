@@ -11,5 +11,6 @@ public interface MysqlMemberMapper {
 	
 	public List<MemberDto> getData(String mnum);
 	public List<MemberDto> getFollowing(String mnum);
+	public void insertMem(MemberDto mdto);
 
 }

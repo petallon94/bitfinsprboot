@@ -7,4 +7,7 @@
    <select id="getFollowing" parameterType="String" resultType="Member">
       select * from member m,follower f where m.mnum=f.follower and m.mnum=#{mnum}
    </select>
+   <insert id = "insertMem" parameterType ="Member">
+   		insert into member (memailid,mnick,mpw) values (#{memailid},#{mnick},#{mpw})
+   </insert>
 </mapper>
