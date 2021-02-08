@@ -10,4 +10,14 @@
    <insert id = "insertMem" parameterType ="Member">
    		insert into member (memailid,mnick,mpw) values (#{memailid},#{mnick},#{mpw})
    </insert>
+   <select id="checkEmail" parameterType="String" resultType="int">
+      select count(*) from member m where m.memailid=#{memailid}
+   </select>
+   <select id="checkNick" parameterType="String" resultType="int">
+      select count(*) from member m where m.mnick=#{mnick}
+   </select>
+   <select id="LoginCheck" parameterType="Member" resultType="Member">
+      select * from member m where m.memailid=#{memailid} and m.mpw = #{mpw}
+   </select>
+   
 </mapper>
