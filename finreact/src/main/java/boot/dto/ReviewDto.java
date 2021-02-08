@@ -18,6 +18,12 @@ public class ReviewDto {
 	private int rscore;
 	private Timestamp rwriteday;
 	
+    //member
+    private int mnum;
+    private String memailid;
+    private String mnick;
+    private String mpw;
+	
 	//restaurant;
 	private int resnum;
 	private int revnum;
@@ -65,6 +71,30 @@ public class ReviewDto {
 	}
 	public void setRwriteday(Timestamp rwriteday) {
 		this.rwriteday = rwriteday;
+	}
+	public int getMnum() {
+		return mnum;
+	}
+	public void setMnum(int mnum) {
+		this.mnum = mnum;
+	}
+	public String getMemailid() {
+		return memailid;
+	}
+	public void setMemailid(String memailid) {
+		this.memailid = memailid;
+	}
+	public String getMnick() {
+		return mnick;
+	}
+	public void setMnick(String mnick) {
+		this.mnick = mnick;
+	}
+	public String getMpw() {
+		return mpw;
+	}
+	public void setMpw(String mpw) {
+		this.mpw = mpw;
 	}
 	public int getResnum() {
 		return resnum;
@@ -126,7 +156,6 @@ public class ReviewDto {
 	public void setLrnum(int lrnum) {
 		this.lrnum = lrnum;
 	}
-	
 	
 	
 
