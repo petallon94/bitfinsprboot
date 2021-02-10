@@ -11,6 +11,7 @@ import boot.dto.ReviewDto;
 public interface MysqlReviewMapper {
 	
 	public int getTotalCount();
+	//public List<ReviewDto> getAllDatas(int mnum);
 	public List<ReviewDto> getAllDatas();
 
 }

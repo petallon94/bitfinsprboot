@@ -4,6 +4,13 @@
 	<select id="getTotalCount" resultType="int">
 		select count(*) from review
 	</select>
+<!-- 	<select id="getAllDatas"  parameterType="int" resultType="review">
+      select * from review r, follower f where r.rmnum = f.follower and f.fmnum =#{mnum} order by r.rwriteday desc
 
+ 	</select> -->
+ 	<select id="getAllDatas"  resultType="review">
+      select * from review order by rwriteday desc
+
+ 	</select>
 	
 </mapper>
