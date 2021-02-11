@@ -50,25 +50,21 @@ public class ReactMypageController {
 	//7. 한식 리뷰 가져오기
 	@GetMapping("/mypage/myKorList")
 	public List<ReviewDto> getMyKorList(@RequestParam String mnick) {
-		ReviewDto dto=mapper.getMyKorList(mapper.getMyNumber(mnick));
-		return dto;
+		return mapper.getMyKorList(mapper.getMyNumber(mnick));
 	}
 	//8. 중식 리뷰 가져오기
 	@GetMapping("/mypage/myCnList")
 	public List<ReviewDto> getMyCnList(@RequestParam String mnick) {
-		ReviewDto dto=mapper.getMyCnList(mapper.getMyNumber(mnick));
-		return dto;
+		return mapper.getMyCnList(mapper.getMyNumber(mnick));
 	}
 	//9. 일식 리뷰 가져오기
 	@GetMapping("/mypage/myJapList")
 	public List<ReviewDto> getMyJapList(@RequestParam String mnick) {
-		ReviewDto dto=mapper.getMyJapList(mapper.getMyNumber(mnick));
-		return dto;
+		return mapper.getMyJapList(mapper.getMyNumber(mnick));
 	}
 	//10. 기타 리뷰 가져오기
 	@GetMapping("/mypage/myEtcList")
 	public List<ReviewDto> getMyEtcList(@RequestParam String mnick) {
-		ReviewDto dto=mapper.getMyEtcList(mapper.getMyNumber(mnick));
-		return dto;
+		return mapper.getMyEtcList(mapper.getMyNumber(mnick));
 	}
 }
