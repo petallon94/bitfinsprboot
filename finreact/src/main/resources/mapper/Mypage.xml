@@ -1,41 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boot.dao.MysqlMypageMapper">
-	<!-- 전체 리뷰~ -->
-	<select id="getMypageData" parameterType="String" resultType="review">
-      select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{rmnum}
-	</select>
-	<!-- 전체 갯수 -->
-	<select id="getMypageListCount" parameterType="int" resultType="int">
-      select count(*) from review where rmnum=#{rmnum}
+		
+	<!-- 1. 닉네임으로 넘버 가져오기. -->
+	<select id="getMyNumber" parameterType="String" resultType="String">
+		select mnum from member where mnick=#{mnick}
 	</select>
 	
-	<!-- 팔로워 수 -->
-	<select id="getfollo" parameterType="int" resultType="int">
+	<!-- 2. 넘버로 member정보(닉네임) 가져오기 ... 사진은 도대체 어디에 있을까... -->
+	<select id="getMyMemberDto" parameterType="String" resultType="Member">
+		select * from member where mnum=${mnum}
+	</select>
+	
+	<!-- 3. 넘버로 게시물 갯수 가져오기 (rmnum은 멤버번호) -->
+	<select id="getMyListCount" parameterType="String" resultType="String">
+      select count(*) from review where rmnum=#{mnum}
+	</select>
+	
+	<!-- 4. 넘버로 팔로워(나를 팔로잉한 사람) 수 가져오기 -->
+	<select id="getFollower" parameterType="String" resultType="String">
  		select count(*) from follower where fmnum=#{mnum}
 	</select>
-	<!-- 팔로우 명수 -->
-    <select id="getFollows" parameterType="int" resultType="int">
+	
+	<!-- 5. 넘버로 팔로우(내가 팔로잉한 사람) 수 가져오기 -->
+	<select id="getFollow" parameterType="String" resultType="String">
         select count(*) from follower where follower=#{mnum}
     </select>
-	
-	
-	
-	
-	<!-- 내정보 -->
-	<select id="getMyMember" parameterType="int" resultType="Member">
-		select * from member where mnum=#{mnum}
+    
+    <!-- 6. 전체 리뷰 가져오기 -->
+	<select id="getMyAllList" parameterType="String" resultType="review">
+      select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum}
 	</select>
-	<!-- 자세한 내정보 -->
-	<select id="getMypageMember" parameterType="int" resultType="Member">
- 		select * from member m,follower f where m.mnum=f.fmnum and mnum=#{mnum}
+	
+	<!-- 7. 한식 리뷰 가져오기 -->
+	<select id="getMyKorList" parameterType="String" resultType="review">
+      select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} and rcategory='한식'
 	</select>
-	<!-- 내 팔로워들 정보 -->
-    <select id="getFollowing" parameterType="int" resultType="int">
-        select * from member m,follower f where m.mnum=f.follower and m.mnum=#{mnum}
-    </select>
-
-
+	<!-- 8. 중식 리뷰 가져오기 -->
+	<select id="getMyCnList" parameterType="String" resultType="review">
+      select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} and rcategory='중식'
+	</select>
+	<!-- 9. 일식 리뷰 가져오기 -->
+	<select id="getMyJapList" parameterType="String" resultType="review">
+      select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} and rcategory='일식'
+	</select>
+	<!-- 10. 기타 리뷰 가져오기 -->
+	<select id="getMyEtcList" parameterType="String" resultType="review">
+      select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} and rcategory='기타'
+	</select>
 
 	
 </mapper>
