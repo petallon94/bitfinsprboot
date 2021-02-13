@@ -45,7 +45,12 @@ public interface MysqlMypageMapper {
 	public List<ReviewDto> getMyEtcList(String mnum);
 	
 	
-
+	//12 1.  rnum으로 멤버번호,닉네임,사진,내용,쓴날짜,가게이름,가게주소,해시테그 가져오기.
+	public ReviewDto getMyReviewData(String rnum);
+	//12-2. rnum으로 사진들 가져오기.
+	public String getMyReviewPic(String rnum);
+	//12-3. rnum을 좋아하는 수 가져오기.
+	public String getMyLikeCount(String rnum);
 	
 	
 }

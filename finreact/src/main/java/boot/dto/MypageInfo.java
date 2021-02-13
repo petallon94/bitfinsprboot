@@ -4,10 +4,12 @@ public class MypageInfo {
 	
 	private String mnum;
 	private String mnick;
-	private String mpcik;
+	private String mpic;
+	private String mintro;
 	private String listCount;
 	private String follow;
 	private String follower;
+	
 	
 	public String getMnum() {
 		return mnum;
@@ -21,11 +23,17 @@ public class MypageInfo {
 	public void setMnick(String mnick) {
 		this.mnick = mnick;
 	}
-	public String getMpcik() {
-		return mpcik;
+	public String getMpic() {
+		return mpic;
 	}
-	public void setMpcik(String mpcik) {
-		this.mpcik = mpcik;
+	public void setMpic(String mpic) {
+		this.mpic = mpic;
+	}
+	public String getMintro() {
+		return mintro;
+	}
+	public void setMintro(String mintro) {
+		this.mintro = mintro;
 	}
 	public String getListCount() {
 		return listCount;
@@ -45,6 +53,9 @@ public class MypageInfo {
 	public void setFollower(String follower) {
 		this.follower = follower;
 	}
+	
+	
+	
 	
 	
 	

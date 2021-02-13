@@ -23,6 +23,7 @@ public class ReviewDto {
     private String memailid;
     private String mnick;
     private String mpw;
+    private String mpic;
 	
 	//restaurant;
 	private int resnum;
@@ -41,7 +42,6 @@ public class ReviewDto {
 	//likere
 	private int lmnum;
 	private int lrnum;
-	
 	public int getRnum() {
 		return rnum;
 	}
@@ -95,6 +95,12 @@ public class ReviewDto {
 	}
 	public void setMpw(String mpw) {
 		this.mpw = mpw;
+	}
+	public String getMpic() {
+		return mpic;
+	}
+	public void setMpic(String mpic) {
+		this.mpic = mpic;
 	}
 	public int getResnum() {
 		return resnum;
@@ -156,6 +162,8 @@ public class ReviewDto {
 	public void setLrnum(int lrnum) {
 		this.lrnum = lrnum;
 	}
+	
+	
 	
 	
 

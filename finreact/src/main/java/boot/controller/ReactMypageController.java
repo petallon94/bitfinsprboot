@@ -1,6 +1,7 @@
 package boot.controller;
 
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import boot.dao.MysqlMypageMapper;
 import boot.dto.MemberDto;
 import boot.dto.MypageInfo;
+import boot.dto.MypageList;
 import boot.dto.ReviewDto;
 
 
@@ -35,12 +37,14 @@ public class ReactMypageController {
 		MypageInfo dto = new MypageInfo();
 		dto.setMnum(mnum);
 		dto.setMnick(mnick);
-		dto.setMpcik(ProfileDto.getMpick());
+		dto.setMintro(ProfileDto.getMintro());
+		dto.setMpic(ProfileDto.getMpic());
 		dto.setFollow(mapper.getFollow(mnum));
 		dto.setFollower(mapper.getFollower(mnum));
 		dto.setListCount(mapper.getMyListCount(mnum));
 		return dto;
 	}
+	
 	
 	//6. 전체 리뷰 가져오기
 	@GetMapping("/mypage/list")
@@ -62,6 +66,7 @@ public class ReactMypageController {
 	public List<ReviewDto> getMyJapList(@RequestParam String mnick) {
 		return mapper.getMyJapList(mapper.getMyNumber(mnick));
 	}
+	
 	//10. 양식 리뷰 가져오기
 	@GetMapping("/mypage/list/wes")
 	public List<ReviewDto> getMyWesList(@RequestParam String mnick) {
@@ -72,4 +77,37 @@ public class ReactMypageController {
 	public List<ReviewDto> getMyEtcList(@RequestParam String mnick) {
 		return mapper.getMyEtcList(mapper.getMyNumber(mnick));
 	}
+	
+	//12. 리스트 각 요소에 들어갈 내용 가져오기.
+	@GetMapping("/mypage/getMyListInformation")
+	public MypageList getMyListInformation(@RequestParam String rnum) {
+		ReviewDto review=mapper.getMyReviewData(rnum);
+		MypageList myList = new MypageList();
+		
+		//멤버
+		myList.setMnum(review.getMnum());
+		myList.setMnick(review.getMnick());
+		myList.setMpic(review.getMpic());
+		//리뷰
+		myList.setRnum(rnum);
+		myList.setRcontent(review.getRcontent());
+		myList.setRscore(review.getRscore());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
+		myList.setRwriteday(format.format(review.getRwriteday()));
+		//사진 *한장만... 여러장 할 경우 변경
+		myList.setPicname(mapper.getMyReviewPic(rnum));
+		
+		//레스토랑
+		myList.setResaddr(review.getResaddr());
+		myList.setResname(review.getResname());
+		
+		//해시테그
+		myList.setHashtag(review.getHashtag());
+		
+		//좋아요 수
+		myList.setLikes(mapper.getMyLikeCount(rnum));
+
+		return myList;
+	}
+	
 }

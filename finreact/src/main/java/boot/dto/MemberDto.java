@@ -11,7 +11,8 @@ public class MemberDto {
    
    //member
    private int mnum;
-   private String mpick;
+   private String mpic;
+   private String mintro;
    private String memailid;
    private String mnick;
    private String mpw;
@@ -31,15 +32,24 @@ public class MemberDto {
 	}
 	
 	
-	public String getMpick() {
-		return mpick;
+	public String getMpic() {
+		return mpic;
 	}
 	
 	
-	public void setMpick(String mpick) {
-		this.mpick = mpick;
+	
+	public void setMpick(String mpic) {
+		this.mpic = mpic;
 	}
 	
+	
+	public String getMintro() {
+		return mintro;
+	}
+	
+	public void setMintro(String mintro) {
+		this.mintro = mintro;
+	}
 	
 	public String getMemailid() {
 		return memailid;
