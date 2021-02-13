@@ -16,7 +16,9 @@ public class ReviewDto {
 	private int rmnum;
 	private String rcontent;
 	private int rscore;
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Seoul")
 	private Timestamp rwriteday;
+	private String rcategory;
 	
     //member
     private int mnum;
@@ -162,7 +164,14 @@ public class ReviewDto {
 	public void setLrnum(int lrnum) {
 		this.lrnum = lrnum;
 	}
-	
+	public String getRcategory() {
+		return rcategory;
+	}
+	public void setRcategory(String rcategory) {
+		this.rcategory = rcategory;
+	}
+
+		
 	
 	
 	
