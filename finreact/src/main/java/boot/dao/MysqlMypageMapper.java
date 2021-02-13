@@ -26,6 +26,11 @@ public interface MysqlMypageMapper {
 	//5. 넘버로 팔로우(내가 팔로잉한 사람) 수 가져오기
 	public String getFollow(String mnum);
 	
+	//5. 추가
+	public String getImYourFollwer(String mynum, String yournum);
+	
+	
+	
 	//6. 전체 리뷰 가져오기
 	public List<ReviewDto> getMyAllList(String mnum);
 	
@@ -47,10 +52,26 @@ public interface MysqlMypageMapper {
 	
 	//12 1.  rnum으로 멤버번호,닉네임,사진,내용,쓴날짜,가게이름,가게주소,해시테그 가져오기.
 	public ReviewDto getMyReviewData(String rnum);
+	
+	public String getMyHashtag(String rnum);
 	//12-2. rnum으로 사진들 가져오기.
 	public String getMyReviewPic(String rnum);
 	//12-3. rnum을 좋아하는 수 가져오기.
 	public String getMyLikeCount(String rnum);
+	
+	//13. 팔로워 추가
+	public void addFollower(String yournum, String mynum);	
+	//14. 팔로워 삭제
+	public void delFollwer(String yournum, String mynum);
+	
+	
+
+	
+	
+	
+	
+	
+	
 	
 	
 }

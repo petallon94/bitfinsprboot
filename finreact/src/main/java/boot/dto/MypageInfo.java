@@ -9,8 +9,16 @@ public class MypageInfo {
 	private String listCount;
 	private String follow;
 	private String follower;
+	private String following;
 	
 	
+	
+	public String getFollowing() {
+		return following;
+	}
+	public void setFollowing(String following) {
+		this.following = following;
+	}
 	public String getMnum() {
 		return mnum;
 	}
