@@ -44,7 +44,11 @@
 	<select id="getMyJapList" parameterType="String" resultType="review">
       select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} and rcategory='일식'
 	</select>
-	<!-- 10. 기타 리뷰 가져오기 -->
+	<!-- 10. 일식 리뷰 가져오기 -->
+	<select id="getMyWesList" parameterType="String" resultType="review">
+      select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} and rcategory='양식'
+	</select>
+	<!-- 11. 기타 리뷰 가져오기 -->
 	<select id="getMyEtcList" parameterType="String" resultType="review">
       select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} and rcategory='기타'
 	</select>

@@ -43,27 +43,32 @@ public class ReactMypageController {
 	}
 	
 	//6. 전체 리뷰 가져오기
-	@GetMapping("/mypage/myAllList")
+	@GetMapping("/mypage/list")
 	public List<ReviewDto> getMyAllList(@RequestParam String mnick) {
 		return mapper.getMyAllList(mapper.getMyNumber(mnick));
 	}
 	//7. 한식 리뷰 가져오기
-	@GetMapping("/mypage/myKorList")
+	@GetMapping("/mypage/list/kor")
 	public List<ReviewDto> getMyKorList(@RequestParam String mnick) {
 		return mapper.getMyKorList(mapper.getMyNumber(mnick));
 	}
 	//8. 중식 리뷰 가져오기
-	@GetMapping("/mypage/myCnList")
+	@GetMapping("/mypage/list/cn")
 	public List<ReviewDto> getMyCnList(@RequestParam String mnick) {
 		return mapper.getMyCnList(mapper.getMyNumber(mnick));
 	}
 	//9. 일식 리뷰 가져오기
-	@GetMapping("/mypage/myJapList")
+	@GetMapping("/mypage/list/jap")
 	public List<ReviewDto> getMyJapList(@RequestParam String mnick) {
 		return mapper.getMyJapList(mapper.getMyNumber(mnick));
 	}
-	//10. 기타 리뷰 가져오기
-	@GetMapping("/mypage/myEtcList")
+	//10. 양식 리뷰 가져오기
+	@GetMapping("/mypage/list/wes")
+	public List<ReviewDto> getMyWesList(@RequestParam String mnick) {
+		return mapper.getMyJapList(mapper.getMyNumber(mnick));
+	}
+	//11. 기타 리뷰 가져오기
+	@GetMapping("/mypage/list/etc")
 	public List<ReviewDto> getMyEtcList(@RequestParam String mnick) {
 		return mapper.getMyEtcList(mapper.getMyNumber(mnick));
 	}
