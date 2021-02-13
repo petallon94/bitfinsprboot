@@ -25,8 +25,7 @@
 	<!-- 5. 넘버로 팔로우(내가 팔로잉한 사람) 수 가져오기 -->
 	<select id="getFollow" parameterType="String" resultType="String">
         select count(*) from follower where follower=#{mnum}
-    </select>
-    
+    </select> 
     <!-- 6. 전체 리뷰 가져오기 -->
 	<select id="getMyAllList" parameterType="String" resultType="review">
       select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} order by rwriteday desc;

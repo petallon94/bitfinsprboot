@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boot.dao.MysqlReviewMapper">
+	<!-- 리뷰총갯수 -->
 	<select id="getTotalCount" resultType="int">
 		select count(*) from review
 	</select>
-
-<!-- 	<select id="getAllDatas"  parameterType="int" resultType="review">
-      select * from review r, follower f where r.rmnum = f.follower and f.fmnum =#{mnum} order by r.rwriteday desc
-
- 	</select> -->
  	<select id="getAllDatas"  resultType="review">
       select * from review order by rwriteday desc
-
  	</select>
-
 	<select id="getData" parameterType="String" resultType="review">
 		select * from review where rnum = #{rnum}
 	</select>
+	<!-- 로그인한사람이 팔로잉한 사람들 리뷰보기 -->
+	<select id="getPostDatas" parameterType="String" resultType="review">
+ 		select * from review r, follower f, member m where r.rmnum = f.fmnum and f.follower = m.mnum and m.mnum= #{mnum} order by r.rwriteday desc
+ 	</select>
+ 	<!-- 리뷰넘버로 리뷰가져오기 -->
+ 	<select id="selectNumOfReview" parameterType="int" resultType="review">
+		select * from review where rnum=#{rnum}
+	</select> 
+	<!-- 리뷰의 사진가져오기 -->
+ 	<select id="getPicOfReview" parameterType="int" resultType="review">
+ 		 select * from review r, repic p where r.rnum = p.pirnum and r.rnum = #{rnum}
+ 	</select>
+ 	<!-- 리뷰의 식당정보가져오기 -->
+ 	<select id="getResInfoOfReview" parameterType="int" resultType="review">
+ 		 select * from review r, restaurant res where r.rnum = res.revnum and r.rnum = #{rnum}
+ 	</select>
+ 	<!-- 리뷰의 해시태그가져오기 -->
+ 	<select id="getHashtagOfReview" parameterType="int" resultType="review">
+ 		 select * from review r, hashtag h where r.rnum = h.crnum and r.rnum = #{rnum}
+ 	</select>
+ 	<!-- 리뷰의  최신 댓글 1개만 가져오기-->
+ 	<select id="getAnswerOfReview" parameterType="int" resultType="review">
+ 		select * from review r, answer a where r.rnum = a.arnum and r.rnum = #{rnum} order by a.writeday desc limit 1
+ 	</select>
+	<!-- 리뷰의 좋아요 가져오기 -->
 
 </mapper>
