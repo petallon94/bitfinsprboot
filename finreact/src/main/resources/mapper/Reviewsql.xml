@@ -4,6 +4,7 @@
 	<select id="getTotalCount" resultType="int">
 		select count(*) from review
 	</select>
+<<<<<<< HEAD
 <!-- 	<select id="getAllDatas"  parameterType="int" resultType="review">
       select * from review r, follower f where r.rmnum = f.follower and f.fmnum =#{mnum} order by r.rwriteday desc
 
@@ -13,4 +14,9 @@
 
  	</select>
 	
+=======
+	<select id="getData" parameterType="String" resultType="review">
+		select * from review where rnum = #{rnum}
+	</select>
+>>>>>>> 3do
 </mapper>
