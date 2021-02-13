@@ -31,7 +31,7 @@ public class ReactMypageController {
 	//4. 넘버로 팔로워(나를 팔로잉한 사람) 수 가져오기
 	//5. 넘버로 팔로우(내가 팔로잉한 사람) 수 가져오기
 	@GetMapping("/mypage/myInformation")
-	public MypageInfo getMyInformation(@RequestParam String mnick) {
+	public MypageInfo getMyInformation(@RequestParam String mnick, @RequestParam String mynum) {
 		String mnum=mapper.getMyNumber(mnick);
 		MemberDto ProfileDto=mapper.getMyMemberDto(mnum);
 		MypageInfo dto = new MypageInfo();
@@ -42,6 +42,7 @@ public class ReactMypageController {
 		dto.setFollow(mapper.getFollow(mnum));
 		dto.setFollower(mapper.getFollower(mnum));
 		dto.setListCount(mapper.getMyListCount(mnum));
+		dto.setFollowing(mapper.getImYourFollwer(mynum, mnum));
 		return dto;
 	}
 	
@@ -102,12 +103,27 @@ public class ReactMypageController {
 		myList.setResname(review.getResname());
 		
 		//해시테그
-		myList.setHashtag(review.getHashtag());
+		myList.setHashtag(mapper.getMyHashtag(rnum));
 		
 		//좋아요 수
 		myList.setLikes(mapper.getMyLikeCount(rnum));
 
 		return myList;
+	}
+	
+	
+	//13. 팔로워 하기
+	@GetMapping("/mypage/addFollower")
+	public void addFollower(@RequestParam String mnick, @RequestParam String mynum) {
+		String yournum=mapper.getMyNumber(mnick);
+		mapper.addFollower(yournum, mynum);
+	}
+	
+	//14. 팔로워 취소하기
+	@GetMapping("/mypage/delFollwer")
+	public void delFollwer(@RequestParam String mnick, @RequestParam String mynum) {
+		String yournum=mapper.getMyNumber(mnick);
+		mapper.delFollwer(yournum, mynum);
 	}
 	
 }
