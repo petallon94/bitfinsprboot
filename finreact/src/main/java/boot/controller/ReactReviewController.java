@@ -29,12 +29,10 @@ public class ReactReviewController {
 	{		
 		return mapper.getAllDatas();
 	}
-<<<<<<< HEAD
 
-=======
 	@GetMapping("/review/detail")
 	public ReviewDto getData(@RequestParam String rnum) {
 		return mapper.getData(rnum);
 	}
->>>>>>> 3do
+
 }
