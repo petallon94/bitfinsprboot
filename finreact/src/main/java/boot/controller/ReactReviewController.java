@@ -64,9 +64,5 @@ public class ReactReviewController {
 			return mapper.getAnswerOfReview(rnum);
 	}
 
-	@GetMapping("/review/detail")
-	public ReviewDto getData(@RequestParam String rnum) {
-		return mapper.getData(rnum);
-	}
-
+	
 }
