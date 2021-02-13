@@ -18,4 +18,32 @@
 		select * from review where rnum = #{rnum}
 	</select>
 
+
+	
+	
+	
+	
+	<!-- insert -->
+	<insert id = "insertReview" parameterType ="review">
+   		insert into review (rmnum,rcontent,rscore,rwriteday,rcategory) values (#{rmnum},#{rcontent},#{rscore},now(),#{rcategory})
+   </insert>
+   <select id="getRnumber"  resultType="int">
+   		select * from review where rmnum=#{rmnum} order by rnum  desc limit 1
+   </select>
+   <insert id = "insertRestaurant" parameterType ="review">
+   		insert into restaurant (revnum,resname,resaddr) values (#{revnum},#{resname},#{resaddr})
+   </insert>
+   <insert id = "insertRepic" parameterType ="review">
+   		insert into repic (pirnum,picname) values (#{pirnum},#{picname})
+   </insert>
+   <insert id = "insertHashtag" parameterType ="review">
+   		insert into hashtag (crnum,hashtag) values (#{crnum},#{hashtag})
+   </insert>
+   <select id="getContent" parameterType="String" resultType="review">
+   		select * from review where rnum=#{rnum}
+   </select>
+   
+
+
+
 </mapper>
