@@ -38,8 +38,13 @@ public interface MysqlMypageMapper {
 	//9. 일식 리뷰 가져오기
 	public List<ReviewDto> getMyJapList(String mnum);
 	
-	//10. 기타 리뷰 가져오기
+	//10. 양식 리뷰 가져오기
+	public List<ReviewDto> getMyWesList(String mnum);
+	
+	//11. 기타 리뷰 가져오기
 	public List<ReviewDto> getMyEtcList(String mnum);
+	
+	
 
 	
 	
