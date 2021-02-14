@@ -41,13 +41,15 @@ public class ReactMypageController {
 		dto.setMintro(ProfileDto.getMintro());
 		dto.setMpic(ProfileDto.getMpic());
 		dto.setFollow(mapper.getFollow(mnum));
-		dto.setFollower(mapper.getFollower(mnum));
+		
 		dto.setListCount(mapper.getMyListCount(mnum));
 		boolean following;
 		if((mapper.getImYourFollwer(mynum, mnum)==0)) {
 			following=false;
+			dto.setFollower(mapper.getFollower(mnum));
 		}else {
 			following=true;
+			dto.setFollower(mapper.getFollower(mnum)-1);
 		}
 		dto.setFollowing(following);
 		return dto;
@@ -139,13 +141,15 @@ public class ReactMypageController {
 	public likebtnDto selectLikere(@RequestParam String rnum, @RequestParam String mnum) {
 		likebtnDto dto=new likebtnDto();
 		//좋아요 수
-		dto.setLikeCount(mapper.getMyLikeCount(rnum));
+		
 		
 		boolean likeme;
 		if((mapper.getMyLikeOk(rnum, mnum)==0)) {
 			likeme=false;
+			dto.setLikeCount(mapper.getMyLikeCount(rnum));
 		}else {
 			likeme=true;
+			dto.setLikeCount(mapper.getMyLikeCount(rnum)-1);
 		}
 		//트루펄스
 		dto.setLikeme(likeme);
