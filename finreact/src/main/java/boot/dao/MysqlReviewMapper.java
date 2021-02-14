@@ -16,7 +16,7 @@ public interface MysqlReviewMapper {
 	public List<ReviewDto> getAllDatas();
 	public ReviewDto getData(String rnum);
 	public List<ReviewDto> getPostDatas(String mnum);
-	public ReviewDto selectNumOfReview(String rnum);
+	public ReviewDto selectNumOfReview(int rnum);
 	public ReviewDto getPicOfReview(String rnum); 
 	public ReviewDto getResInfoOfReview(String rnum); 
 	public ReviewDto getHashtagOfReview(String rnum);
