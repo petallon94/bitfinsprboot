@@ -16,6 +16,7 @@ import boot.dto.MemberDto;
 import boot.dto.MypageInfo;
 import boot.dto.MypageList;
 import boot.dto.ReviewDto;
+import boot.dto.likebtnDto;
 
 
 @RestController
@@ -131,5 +132,37 @@ public class ReactMypageController {
 		String yournum=mapper.getMyNumber(mnick);
 		mapper.delFollwer(yournum, mynum);
 	}
+	
+	//15. 좋아요 버튼 만들기
+	//15-1 좋아요 갯수와 내가 좋아요 했는지 여부 확인하기
+	@GetMapping("mypage/selectLikere")
+	public likebtnDto selectLikere(@RequestParam String rnum, @RequestParam String mnum) {
+		likebtnDto dto=new likebtnDto();
+		//좋아요 수
+		dto.setLikeCount(mapper.getMyLikeCount(rnum));
+		
+		boolean likeme;
+		if((mapper.getMyLikeOk(rnum, mnum)==0)) {
+			likeme=false;
+		}else {
+			likeme=true;
+		}
+		//트루펄스
+		dto.setLikeme(likeme);
+		
+		return dto;
+	}
+	
+	//15-2 좋아요 하기
+	@GetMapping("/mypage/addLike")
+	public void addLiker(@RequestParam String rnum, @RequestParam String mnum) {
+		mapper.addLike(rnum, mnum);
+	}
+	//15-3 좋아요 취소
+	@GetMapping("/mypage/delLike")
+	public void delLiker(@RequestParam String rnum, @RequestParam String mnum) {
+		mapper.delLike(rnum, mnum);
+	}
+	
 	
 }

@@ -26,7 +26,7 @@ public class MypageList {
 	private String hashtag;
 	
 	//좋아요 수
-	private String likes;
+	private int likes;
 
 	public int getMnum() {
 		return mnum;
@@ -116,11 +116,11 @@ public class MypageList {
 		this.hashtag = hashtag;
 	}
 
-	public String getLikes() {
+	public int getLikes() {
 		return likes;
 	}
 
-	public void setLikes(String likes) {
+	public void setLikes(int likes) {
 		this.likes = likes;
 	}
 	
