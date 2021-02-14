@@ -170,7 +170,6 @@ public class ReactReviewController {
 			int rnum=mapper.getRnumber(Integer.toString(dto.getRmnum()));
 			System.out.println("rnum확인:"+rnum);
 
-
 			//dto에 저장
 			dto.setRevnum(rnum);
 			dto.setPirnum(rnum);
