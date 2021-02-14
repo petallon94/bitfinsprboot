@@ -13,6 +13,7 @@ import boot.dao.MysqlReviewMapper;
 import boot.dto.AnswerDto;
 import boot.dto.MypageList;
 import boot.dto.ReviewDto;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -59,7 +60,7 @@ public class ReactReviewController {
 	
 	//getData:dto보내기
 	@GetMapping("/review/detail")
-	public ReviewDto getReview(@RequestParam String rnum)
+	public ReviewDto getReview(@RequestParam int rnum)
 	{
 		
 			return mapper.selectNumOfReview(rnum);
@@ -116,6 +117,8 @@ public class ReactReviewController {
 		//레스토랑
 		myList.setResaddr(review.getResaddr());
 		myList.setResname(review.getResname());
+		
+		myList.setLikes(mapper.getLikesOfReview(rnum));
 		
 		return myList;
 	}
@@ -184,6 +187,15 @@ public class ReactReviewController {
 
 			upload = null;
 			photoname = null;
+	}
+	
+	
+	@GetMapping("/review/search")
+	public List<ReviewDto> searchAddr(@RequestParam(value = "keyword", required = false, defaultValue = "") 
+	    String keyword)
+	{	
+		
+		return mapper.searchAddrOfReview(keyword);
 	}
 
 }
