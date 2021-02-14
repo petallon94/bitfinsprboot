@@ -19,5 +19,5 @@ public class AnswerDto {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Timestamp awriteday;
 	
-	
+
 }
