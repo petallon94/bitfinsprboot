@@ -77,7 +77,7 @@ public class ReactMypageController {
 	//10. 양식 리뷰 가져오기
 	@GetMapping("/mypage/list/wes")
 	public List<ReviewDto> getMyWesList(@RequestParam String mnick) {
-		return mapper.getMyJapList(mapper.getMyNumber(mnick));
+		return mapper.getMyWesList(mapper.getMyNumber(mnick));
 	}
 	//11. 기타 리뷰 가져오기
 	@GetMapping("/mypage/list/etc")
