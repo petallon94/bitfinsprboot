@@ -9,7 +9,7 @@
       select * from review order by rwriteday desc
  	</select>
 	<select id="getData" parameterType="String" resultType="review">
-		select * from review where rnum = #{rnum}
+		select * from review a,restaurant b,member c where a.rnum=b.revnum and a.rmnum=c.mnum and rnum = #{rnum};
 	</select>
 	<!-- 로그인한사람이 팔로잉한 사람들 리뷰보기 -->
 	<select id="getPostDatas" parameterType="String" resultType="review">
@@ -17,7 +17,7 @@
  	</select>
  	<!-- 리뷰넘버로 리뷰가져오기 -->
  	<select id="selectNumOfReview" parameterType="int" resultType="review">
-		select * from review where rnum=#{rnum}
+		select * from review a,restaurant b,member c where a.rnum=b.revnum and a.rmnum=c.mnum and rnum = #{rnum};
 	</select> 
 	<!-- 리뷰의 사진가져오기 -->
  	<select id="getPicOfReview" parameterType="int" resultType="review">

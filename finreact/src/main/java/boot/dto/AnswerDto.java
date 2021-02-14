@@ -13,6 +13,7 @@ import lombok.Data;
 @Alias("answer")
 public class AnswerDto {
 	//answer
+	private int anum;
 	private int arnum;
 	private String amnick;
 	private String acontent;
