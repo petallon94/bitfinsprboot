@@ -36,6 +36,15 @@ public class ReactMemberController {
 		
 	}
 	
+	@PostMapping("/member/pswupdate")
+	public void pswupdatte(@RequestBody MemberDto mdto )
+	{
+		String mpw = mdto.getMpw();
+		System.out.print(mpw);
+		mapper.UpdatePsw(mpw);	
+	}
+	
+	
 	@PostMapping("/member/checkEmail")
 	public int checkEmail(@RequestBody MemberDto mdto) {
 		String memailid = mdto.getMemailid();
