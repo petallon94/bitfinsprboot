@@ -59,7 +59,7 @@ public class ReactReviewController {
 	
 	//getData:dto보내기
 	@GetMapping("/review/detail")
-	public ReviewDto getReview(@RequestParam String rnum)
+	public ReviewDto getReview(@RequestParam int rnum)
 	{
 		
 			return mapper.selectNumOfReview(rnum);
