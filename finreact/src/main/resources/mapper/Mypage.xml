@@ -13,19 +13,25 @@
 	</select>
 	
 	<!-- 3. 넘버로 게시물 갯수 가져오기 (rmnum은 멤버번호) -->
-	<select id="getMyListCount" parameterType="String" resultType="String">
+	<select id="getMyListCount" parameterType="String" resultType="int">
       select count(*) from review where rmnum=#{mnum}
 	</select>
 	
 	<!-- 4. 넘버로 팔로워(나를 팔로잉한 사람) 수 가져오기 -->
-	<select id="getFollower" parameterType="String" resultType="String">
+	<select id="getFollower" parameterType="String" resultType="int">
  		select count(*) from follower where fmnum=#{mnum}
 	</select>
 	
 	<!-- 5. 넘버로 팔로우(내가 팔로잉한 사람) 수 가져오기 -->
-	<select id="getFollow" parameterType="String" resultType="String">
+	<select id="getFollow" parameterType="String" resultType="int">
         select count(*) from follower where follower=#{mnum}
-    </select> 
+    </select>
+    
+    <!-- 5-2. 추가! 내가 이사람을 팔로잉 -->
+    <select id="getImYourFollwer" parameterType="String" resultType="int">
+        select count(*) from follower where follower=#{mynum} and fmnum=#{yournum};
+    </select>
+    
     <!-- 6. 전체 리뷰 가져오기 -->
 	<select id="getMyAllList" parameterType="String" resultType="review">
       select * from review r, member m where r.rmnum = m.mnum and m.mnum=#{mnum} order by rwriteday desc;
@@ -56,7 +62,12 @@
 	
 	<!-- 12. 1 rnum으로 멤버번호,닉네임,사진,내용,쓴날짜,가게이름,가게주소,해시테그 가져오기. -->
 	<select id="getMyReviewData" parameterType="String" resultType="review">
-		select * from member, review, restaurant,hashtag where rnum=#{rnum} and revnum=rnum and crnum=rnum and  mnum=rmnum
+	        select * from member, review, restaurant where rnum=#{rnum} and revnum=rnum and rmnum=mnum
+    </select>
+    
+    <!-- 해시테그 가져오기 -->
+    <select id="getMyHashtag" parameterType="String" resultType="String">
+        select hashtag from hashtag where crnum=#{rnum}
 	</select>
 	
 	<!-- 12. 2 rnum으로 사진들 가져오기. -->
@@ -68,6 +79,18 @@
 	<select id="getMyLikeCount" parameterType="String" resultType="String">
 		select count(*) from likere where lrnum=#{rnum}
 	</select>
+	
+	    
+    <!-- 13. 팔로우 추가! -->
+    <insert id = "addFollower" parameterType ="String">
+           insert into follower (fmnum,follower) values (#{yournum},#{mynum})
+    </insert>
+    <!-- 14. 팔로우 제거! -->
+    <delete id="delFollwer" parameterType="String">
+            delete from follower where fmnum=#{yournum} and follower=#{mynum}
+    </delete>
+    
+    
 	
 	
 </mapper>

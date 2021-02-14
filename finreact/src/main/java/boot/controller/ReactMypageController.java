@@ -42,7 +42,13 @@ public class ReactMypageController {
 		dto.setFollow(mapper.getFollow(mnum));
 		dto.setFollower(mapper.getFollower(mnum));
 		dto.setListCount(mapper.getMyListCount(mnum));
-		dto.setFollowing(mapper.getImYourFollwer(mynum, mnum));
+		boolean following;
+		if((mapper.getImYourFollwer(mynum, mnum)==0)) {
+			following=false;
+		}else {
+			following=true;
+		}
+		dto.setFollowing(following);
 		return dto;
 	}
 	

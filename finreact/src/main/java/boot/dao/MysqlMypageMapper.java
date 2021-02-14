@@ -18,16 +18,16 @@ public interface MysqlMypageMapper {
 	public MemberDto getMyMemberDto(String mnum);
 	
 	//3. 넘버로 게시물 갯수 가져오기 (rmnum은 멤버번호)
-	public String getMyListCount(String mnum);
+	public int getMyListCount(String mnum);
 	
 	//4. 넘버로 팔로워(나를 팔로잉한 사람) 수 가져오기
-	public String getFollower(String mnum);
+	public int getFollower(String mnum);
 	
 	//5. 넘버로 팔로우(내가 팔로잉한 사람) 수 가져오기
-	public String getFollow(String mnum);
+	public int getFollow(String mnum);
 	
 	//5. 추가
-	public String getImYourFollwer(String mynum, String yournum);
+	public int getImYourFollwer(String mynum, String yournum);
 	
 	
 	

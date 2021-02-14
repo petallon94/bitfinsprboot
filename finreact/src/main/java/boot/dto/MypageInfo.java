@@ -6,19 +6,11 @@ public class MypageInfo {
 	private String mnick;
 	private String mpic;
 	private String mintro;
-	private String listCount;
-	private String follow;
-	private String follower;
-	private String following;
+	private int listCount;
+	private int follow;
+	private int follower;
+	private boolean following;
 	
-	
-	
-	public String getFollowing() {
-		return following;
-	}
-	public void setFollowing(String following) {
-		this.following = following;
-	}
 	public String getMnum() {
 		return mnum;
 	}
@@ -43,32 +35,30 @@ public class MypageInfo {
 	public void setMintro(String mintro) {
 		this.mintro = mintro;
 	}
-	public String getListCount() {
+	public int getListCount() {
 		return listCount;
 	}
-	public void setListCount(String listCount) {
+	public void setListCount(int listCount) {
 		this.listCount = listCount;
 	}
-	public String getFollow() {
+	public int getFollow() {
 		return follow;
 	}
-	public void setFollow(String follow) {
+	public void setFollow(int follow) {
 		this.follow = follow;
 	}
-	public String getFollower() {
+	public int getFollower() {
 		return follower;
 	}
-	public void setFollower(String follower) {
+	public void setFollower(int follower) {
 		this.follower = follower;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public boolean isFollowing() {
+		return following;
+	}
+	public void setFollowing(boolean following) {
+		this.following = following;
+	}
+
 	
 }
