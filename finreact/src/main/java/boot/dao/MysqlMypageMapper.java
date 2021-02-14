@@ -57,7 +57,7 @@ public interface MysqlMypageMapper {
 	//12-2. rnum으로 사진들 가져오기.
 	public String getMyReviewPic(String rnum);
 	//12-3. rnum을 좋아하는 수 가져오기.
-	public String getMyLikeCount(String rnum);
+	public int getMyLikeCount(String rnum);
 	
 	//13. 팔로워 추가
 	public void addFollower(String yournum, String mynum);	
@@ -65,8 +65,12 @@ public interface MysqlMypageMapper {
 	public void delFollwer(String yournum, String mynum);
 	
 	
-
-	
+	//15-1 좋아요 여부 확인
+	public int  getMyLikeOk(String rnum, String mnum);
+	//15-2 좋아요
+	public void addLike(String rnum, String mnum);
+	//15-3 좋아요 취소	
+	public void delLike(String rnum, String mnum);
 	
 	
 	

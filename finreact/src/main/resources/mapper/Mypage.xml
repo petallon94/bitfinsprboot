@@ -76,7 +76,7 @@
 	</select>
 	
 	<!-- 12. 3 좋아요 수 가져오기 -->
-	<select id="getMyLikeCount" parameterType="String" resultType="String">
+	<select id="getMyLikeCount" parameterType="String" resultType="int">
 		select count(*) from likere where lrnum=#{rnum}
 	</select>
 	
@@ -91,6 +91,20 @@
     </delete>
     
     
-	
+    
+    <!-- 15-1. 좋아요 여부 확인 -->
+    <select id="getMyLikeOk" parameterType="String" resultType="int">
+        select count(*) from likere where lrnum=#{rnum} and lmnum=#{mnum};
+    </select>
+    
+    <!-- 15-2. 좋아요 클릭 -->
+    <insert id = "addLike" parameterType ="String">
+        insert into likere (lrnum,lmnum) values (#{rnum},#{mnum})
+    </insert>
+    
+    <!-- 15-3. 좋아요 취소 -->
+	<delete id="delLike" parameterType="String">
+        delete from likere where lrnum=#{rnum} and lmnum=#{mnum}
+    </delete>
 	
 </mapper>
