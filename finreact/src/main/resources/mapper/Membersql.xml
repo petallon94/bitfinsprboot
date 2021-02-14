@@ -19,8 +19,12 @@
    <select id="LoginCheck" parameterType="Member" resultType="Member">
       select * from member m where m.memailid=#{memailid} and m.mpw = #{mpw}
    </select>
-   <select id="UpdatePsw" parameterType="String">
-      update member set mpw= #{mpw}
-   </select>
+   <update id="UpdatePsw" parameterType="Member">
+      update member set mpw= #{mpw} where mnum =#{mnum}
+   </update>
+   <update id="UpdateProfile" parameterType="Member">
+      update member set mpic= #{mpic} where mnum =#{mnum}
+   </update>
+  
    
 </mapper>

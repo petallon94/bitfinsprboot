@@ -15,5 +15,6 @@ public interface MysqlMemberMapper {
 	public int checkEmail(String memailid);
 	public int checkNick(String mnick);
 	public MemberDto LoginCheck(MemberDto mdto);
-	public void UpdatePsw(String mpw);
+	public void UpdatePsw(MemberDto mdto);
+	public void UpdateProfile(MemberDto mdto);
 }

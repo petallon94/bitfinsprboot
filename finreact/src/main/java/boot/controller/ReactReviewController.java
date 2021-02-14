@@ -147,12 +147,6 @@ public class ReactReviewController {
 			//방금 insert한거 넘버갖구오기
 			int rnum=mapper.getRnumber(Integer.toString(dto.getRmnum()));
 			System.out.println("rnum확인:"+rnum);
-
-
-			
-			
-
-
 			//dto에 저장
 			dto.setRevnum(rnum);
 			dto.setPirnum(rnum);

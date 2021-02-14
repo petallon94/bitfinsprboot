@@ -1,8 +1,14 @@
 package boot.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import boot.dao.MysqlMemberMapper;
 import boot.dto.MemberDto;
@@ -23,6 +30,11 @@ public class ReactMemberController {
 	
 	@Autowired
 	MysqlMemberMapper mapper;
+	
+	MultipartFile upload;
+	String photoname;
+	String uploadPath;
+	
 	
 	@PostMapping("/member/add")
 	public void dataAdd(@RequestBody MemberDto mdto)
@@ -39,9 +51,8 @@ public class ReactMemberController {
 	@PostMapping("/member/pswupdate")
 	public void pswupdatte(@RequestBody MemberDto mdto )
 	{
-		String mpw = mdto.getMpw();
-		System.out.print(mpw);
-		mapper.UpdatePsw(mpw);	
+		
+		mapper.UpdatePsw(mdto);	
 	}
 	
 	
@@ -71,5 +82,55 @@ public class ReactMemberController {
 		System.out.println(mlist);
 		return mlist;
 	}
+	
+	@PostMapping("/member/phoupdate")
+	public void memberupup(@RequestBody MemberDto mdto){
+		
+		System.out.println(mdto.getMpic()+" "+mdto.getMnum());
+		
+		mapper.UpdateProfile(mdto);
+	
+	}
+	
+	
+	@PostMapping(value = "/member/upload", consumes = {"multipart/form-data"})
+	public Map<String, String> fileUpload(@RequestParam MultipartFile uploadFile
+			, HttpServletRequest request)
+	{
+		
+		
+		uploadPath = request.getSession().getServletContext().getRealPath("/profilesave");
+		System.out.println(uploadPath);
+		
+		// 이미지의 확장자 가져오기
+		int pos = uploadFile.getOriginalFilename().lastIndexOf("."); // 마지막 도트의 위치
+		String ext = uploadFile.getOriginalFilename().substring(pos);
+		
+		// 저장할 이미지명 변경하기
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		photoname = "profile" + sdf.format(date) + ext;
+		
+		upload = uploadFile;
+		
+		try {
+			uploadFile.transferTo(new File(uploadPath+"\\"+photoname));
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("파일저장오류:"+e.getMessage());
+		}
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("photoname", photoname);
+		System.out.println("photoname:"+photoname);
+		return map;
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
