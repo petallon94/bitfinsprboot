@@ -23,6 +23,9 @@ public interface MysqlReviewMapper {
 	public AnswerDto getAnswerOfReview(String rnum); 
 	public ReviewDto getFollpostData(String rnum); 
 	public int getLikesOfReview(String rnum);
+	public List<ReviewDto> searchAddrOfReview(String keyword); 
+
+	
 
 //	public int getTotalCount();
 //	//public List<ReviewDto> getAllDatas(int mnum);

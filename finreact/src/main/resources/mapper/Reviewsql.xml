@@ -38,9 +38,15 @@
 	<!-- 리뷰의 좋아요 가져오기 -->
 	<select id="getLikesOfReview" parameterType="String" resultType="int">
 		select count(*) from likere l, review r where l.lrnum=#{rnum}
-	</select>	
+	</select>
+	<!-- 팔로우 포스팅리스트-->	
 	<select id="getFollpostData" parameterType="String" resultType="review">
 		select * from member m, review r, restaurant res, repic p where r.rnum=#{rnum} and res.revnum=r.rnum and  m.mnum=r.rmnum and p.pirnum= r.rnum
+	</select>
+	<!-- 주소로 검색 -->
+	<select id = "searchAddrOfReview" parameterType ="String" resultType ="review" >
+ 	 select * from review r, restaurant res where res.resaddr like '%강남%' and r.rnum =res.revnum order by r.rwriteday desc;
+ 	 <!-- select * from restaurant res,review r where res.revnum=rnum and res.resaddr like ('%', #{keyword}, '%') order by r.rwriteday desc; -->
 	</select>
 
 	
