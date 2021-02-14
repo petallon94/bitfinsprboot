@@ -198,5 +198,39 @@ public class ReactReviewController {
 		return mapper.searchAddrOfReview(keyword);
 	}
 
+	
+	@PostMapping("review/deletereview")
+	public void delReview(HttpServletRequest request
+			, @RequestBody ReviewDto dto)
+			
+	{
+		//파일경로구하기
+		uploadPath = request.getSession().getServletContext().getRealPath("/reviewsave");
+		System.out.println(uploadPath);
+		//파일이름구하기
+		String filename=mapper.getPhotoname(Integer.toString(dto.getRnum())).getPicname();
+		
+		System.out.println("filename:"+filename);
+		
+		//파일삭제하기
+		if(filename!=null)
+		{
+			File file=new File(uploadPath+"\\"+filename);
+			if(file.exists())
+				file.delete();
+		}
+		
+		int rnum=dto.getRnum();
+		System.out.println("rnum:"+rnum);
+		
+		//review delete
+		mapper.deleteReview(Integer.toString(rnum));
+		//일단 레스토랑도..삭제합니다
+		mapper.deleteRestaurant(Integer.toString(rnum));
+		
+	}
+	
+	
+	
 }
 

@@ -18,6 +18,7 @@
  	<!-- 리뷰넘버로 리뷰가져오기 -->
  	<select id="selectNumOfReview" parameterType="int" resultType="review">
 		select * from review a,restaurant b,member c where a.rnum=b.revnum and a.rmnum=c.mnum and rnum = #{rnum};
+
 	</select> 
 	<!-- 리뷰의 사진가져오기 -->
  	<select id="getPicOfReview" parameterType="String" resultType="review">
@@ -73,6 +74,22 @@
    		select * from review where rnum=#{rnum}
    </select>
    
+
+
+
+	<!-- 삭제 -->
+	<delete id="deleteReview" parameterType="String">
+		delete from review where rnum=#{rnum}
+	</delete>
+	<delete id="deleteRestaurant" parameterType="String">
+		delete from restaurant where revnum=#{revnum}
+	</delete>
+	<!-- 파일명구하기 -->
+	<select id="getPhotoname" parameterType="String" resultType="review">
+		select picname from repic where pirnum=#{pirnum}
+	</select>
+	
+
 
 
 

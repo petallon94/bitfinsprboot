@@ -11,7 +11,7 @@ import boot.dto.ReviewDto;
 @Mapper
 public interface MysqlReviewMapper {
 	
-
+	
 	public int getTotalCount();
 	public List<ReviewDto> getAllDatas();
 	public ReviewDto getData(String rnum);
@@ -40,5 +40,12 @@ public interface MysqlReviewMapper {
 	public int getRnumber(String rmnum);
 	
 	public ReviewDto getContent(int rnum);
+	
+	
+	public void deleteReview(String rnum);
+	public void deleteRestaurant(String revnum);
+	public ReviewDto getPhotoname(String pirnum);
+	
+	
 
 }
