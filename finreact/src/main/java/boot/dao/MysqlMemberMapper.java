@@ -18,5 +18,6 @@ public interface MysqlMemberMapper {
 
 	public void UpdatePsw(MemberDto mdto);
 	public void UpdateProfile(MemberDto mdto);
+	public void UpdateMintro(MemberDto mdto);
 
 }

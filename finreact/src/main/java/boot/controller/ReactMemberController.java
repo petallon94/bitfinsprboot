@@ -93,6 +93,17 @@ public class ReactMemberController {
 	
 	}
 	
+	@PostMapping("/member/memupdate")
+	public void memberudd(@RequestBody MemberDto mdto){
+		
+		System.out.println(mdto.getMintro()+" "+mdto.getMnum());
+		
+		mapper.UpdateMintro(mdto);
+	
+	}
+	
+	
+	
 	
 	@PostMapping(value = "/member/upload", consumes = {"multipart/form-data"})
 	public Map<String, String> fileUpload(@RequestParam MultipartFile uploadFile

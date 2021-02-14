@@ -25,4 +25,7 @@
    <update id="UpdateProfile" parameterType="Member">
       update member set mpic= #{mpic} where mnum =#{mnum}
    </update>
+   <update id="UpdateMintro" parameterType="Member">
+      update member set mintro= #{mintro} where mnum =#{mnum}
+   </update>
 </mapper>
