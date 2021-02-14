@@ -96,13 +96,11 @@ public class ReactReviewController {
 
 	
 	
-	
+	//사진선택시 업로드
 	@PostMapping(value = "/review/upload", consumes = {"multipart/form-data"})
 	public Map<String, String> fileUpload(@RequestParam MultipartFile uploadFile
 			, HttpServletRequest request)
 	{
-		
-		
 		uploadPath = request.getSession().getServletContext().getRealPath("/reviewsave");
 		System.out.println(uploadPath);
 		
@@ -130,15 +128,12 @@ public class ReactReviewController {
 		return map;
 	}
 	
-	
+	//리뷰insert
 	@PostMapping("review/insertreview")
 	public void insertReview(HttpServletRequest request
 			, @RequestBody ReviewDto dto
-			
 			)
 	{
-
-		
 	System.out.println("hashtag:"+dto.getHashtag());
 		//System.out.println(dto.getRcontent());
 			//review에 insert
@@ -147,10 +142,6 @@ public class ReactReviewController {
 			//방금 insert한거 넘버갖구오기
 			int rnum=mapper.getRnumber(Integer.toString(dto.getRmnum()));
 			System.out.println("rnum확인:"+rnum);
-
-
-			
-			
 
 
 			//dto에 저장
@@ -164,7 +155,6 @@ public class ReactReviewController {
 			//해시태그안대.....ㅜㅜㅜㅜㅜㅜ
 			//mapper.insertHashtag(dto);
 
-		System.out.println(dto.getRnum());
 
 			upload = null;
 			photoname = null;
