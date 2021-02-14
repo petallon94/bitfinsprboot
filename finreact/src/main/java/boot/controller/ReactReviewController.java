@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import boot.dao.MysqlReviewMapper;
+import boot.dto.AnswerDto;
+import boot.dto.MypageList;
 import boot.dto.ReviewDto;
 import java.io.File;
 import java.io.IOException;
@@ -57,7 +59,7 @@ public class ReactReviewController {
 	
 	//getData:dto보내기
 	@GetMapping("/review/detail")
-	public ReviewDto getReview(@RequestParam int rnum)
+	public ReviewDto getReview(@RequestParam String rnum)
 	{
 			
 			return mapper.selectNumOfReview(rnum);
@@ -65,33 +67,57 @@ public class ReactReviewController {
 		
 	//리뷰에 대한 사진불러오기
 	@GetMapping("/review/pic")
-	public ReviewDto getPicture(@RequestParam int rnum)
+	public ReviewDto getPicture(@RequestParam String rnum)
 	{
 			
 			return mapper.getPicOfReview(rnum);
 	}
 	//리뷰에 대한 레스토랑정보가져오기
 	@GetMapping("/review/res")
-	public ReviewDto getRestaurant(@RequestParam int rnum)
+	public ReviewDto getRestaurant(@RequestParam String rnum)
 	{
 			
 			 return mapper.getResInfoOfReview(rnum);
 	}
 	//리뷰에 대한 해시태그가져오기
 	@GetMapping("/review/hash")
-	public ReviewDto getHashtaglist(@RequestParam int rnum)
+	public ReviewDto getHashtaglist(@RequestParam String rnum)
 	{
 			
 			return mapper.getHashtagOfReview(rnum);
 	}
 	//리뷰에 대한 댓글1개 가져오기
 	@GetMapping("/review/re")
-	public ReviewDto getOneAnswer(@RequestParam int rnum)
+	public AnswerDto getOneAnswer(@RequestParam String rnum)
 	{
 			
 			return mapper.getAnswerOfReview(rnum);
 	}
-
+	//팔로우포스팅가져오기
+	@GetMapping("/review/postlist")
+	public MypageList getMyListInformation(@RequestParam String rnum) {
+		ReviewDto review=mapper.getFollpostData(rnum);
+		MypageList myList = new MypageList();
+		
+		//멤버
+		myList.setMnum(review.getMnum());
+		myList.setMnick(review.getMnick());
+		myList.setMpic(review.getMpic());
+		//리뷰
+		myList.setRnum(rnum);
+		myList.setRcontent(review.getRcontent());
+		myList.setRscore(review.getRscore());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
+		myList.setRwriteday(format.format(review.getRwriteday()));
+		//사진 *한장만... 여러장 할 경우 변경
+		myList.setPicname(review.getPicname());
+		
+		//레스토랑
+		myList.setResaddr(review.getResaddr());
+		myList.setResname(review.getResname());
+		
+		return myList;
+	}
 	
 
 	
