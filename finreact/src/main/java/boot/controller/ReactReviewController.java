@@ -61,9 +61,10 @@ public class ReactReviewController {
 	@GetMapping("/review/detail")
 	public ReviewDto getReview(@RequestParam String rnum)
 	{
-			
+		
 			return mapper.selectNumOfReview(rnum);
 	}
+	
 		
 	//리뷰에 대한 사진불러오기
 	@GetMapping("/review/pic")
